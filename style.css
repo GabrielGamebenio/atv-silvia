@@ -61,6 +61,11 @@ header h1 {
     font-size: 1.8rem;
     color: #145214;
 }
+header h2 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1rem;
+    color: #145214;
+}
 
 /* NAV */
 nav {
