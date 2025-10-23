@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Parque Lagoa do Guapé</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="firebase-config.js"></script>
+    <script defer src="admin.js"></script>
+    <script>
+        (function(d){
+            var s = d.createElement("script");
+            s.setAttribute("data-account", "");
+            s.setAttribute("src", "https://cdn.userway.org/widget.js");
+            (d.body || d.head).appendChild(s);
+        })(document);
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Área do Administrador</h1>
+    </header>
+
+    <section class="admin-section">
+        <h2>Cadastrar Árvore</h2>
+        <form id="formArvore">
+            <input type="text" id="nome" placeholder="Nome da Árvore" required>
+            <textarea id="descricao" placeholder="Descrição" required></textarea>
+            <input type="url" id="imagem" placeholder="URL da imagem" required>
+            <input type="url" id="qrcode" placeholder="URL do QR Code" required>
+            <button type="submit">Cadastrar</button>
+        </form>
+    </section>
+      <!-- Widget VLibras -->
+      <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    
+    <!-- Script do VLibras -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        // Inicializa o widget do VLibras quando a página carregar
+        window.onload = function() {
+            if (typeof VLibras !== 'undefined') {
+                new window.VLibras.Widget('https://vlibras.gov.br/app');
+                console.log('Widget VLibras carregado com sucesso!');
+            } else {
+                console.error('VLibras não foi carregado corretamente.');
+            }
+        };
+        
+        // Alternativa para garantir que o widget seja carregado
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verifica se o script do VLibras foi carregado
+            if (window.VLibras) {
+                new window.VLibras.Widget('https://vlibras.gov.br/app');
+            } else {
+                // Tenta recarregar se não estiver disponível
+                setTimeout(function() {
+                    if (window.VLibras) {
+                        new window.VLibras.Widget('https://vlibras.gov.br/app');
+                    } else {
+                        console.error('Falha ao carregar o VLibras.');
+                    }
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>

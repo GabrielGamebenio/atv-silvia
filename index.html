@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parque Lagoa do Guapé</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Fonte divertida -->
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-storage-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script defer src="script.js"></script>
+    <script>
+        (function(d){
+            var s = d.createElement("script");
+            s.setAttribute("data-account", "");
+            s.setAttribute("src", "https://cdn.userway.org/widget.js");
+            (d.body || d.head).appendChild(s);
+        })(document);
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="Parque Lagoa do Guapé">
+            <h1>Parque Lagoa do Guapé</h1>
+        </div>
+        <nav>
+            <a href="#home">🌱 Início</a>
+            <a href="#trilhas">🌳 Árvores</a>
+            <a href="#quiz">🎮 Quiz</a>
+            <a href="#contato">📩 Contato</a>
+            <a href="admin.html" class="btn-admin">🔑 Admin</a>
+        </nav>
+    </header>
+
+    <section id="home" class="banner">
+        <h2>Bem-vindo ao Parque Municipal Luiz Balboni 🌿</h2>
+        <p>Descubra as maravilhas da <b>Mata Atlântica</b> com histórias, imagens e curiosidades sobre as árvores do nosso parque!</p>
+        <a href="#trilhas" class="btn">🌳 Explorar Árvores</a>
+    </section>
+
+    <section id="trilhas" class="trilhas">
+        <h2>🌱 Conheça as Espécies</h2>
+        <p class="sub-text">Clique nas árvores para ver sua descrição e acessar o QR Code!</p>
+        <div class="arvores-container" id="arvoresContainer">
+            <!-- Carregado via Firebase -->
+        </div>
+    </section>
+
+    <footer>
+        <p>🌍 Parque Lagoa do Guapé &copy; 2025 - Educação Ambiental Infantil</p>
+    </footer>
+      <!-- Widget VLibras -->
+      <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    
+    <!-- Script do VLibras -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        // Inicializa o widget do VLibras quando a página carregar
+        window.onload = function() {
+            if (typeof VLibras !== 'undefined') {
+                new window.VLibras.Widget('https://vlibras.gov.br/app');
+                console.log('Widget VLibras carregado com sucesso!');
+            } else {
+                console.error('VLibras não foi carregado corretamente.');
+            }
+        };
+        
+        // Alternativa para garantir que o widget seja carregado
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verifica se o script do VLibras foi carregado
+            if (window.VLibras) {
+                new window.VLibras.Widget('https://vlibras.gov.br/app');
+            } else {
+                // Tenta recarregar se não estiver disponível
+                setTimeout(function() {
+                    if (window.VLibras) {
+                        new window.VLibras.Widget('https://vlibras.gov.br/app');
+                    } else {
+                        console.error('Falha ao carregar o VLibras.');
+                    }
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
